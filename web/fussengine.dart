@@ -35,10 +35,11 @@ void main() {
   querySelector('#scene-title').text = scene.name;
 
   // main loop
-  var future = new Future.delayed(const Duration(milliseconds: 30), mainLoop);
+  var future = new Timer.periodic(const Duration(milliseconds: 30), mainLoop);
 }
 
-void mainLoop() {
+void mainLoop(timer) {
+//  print('loop');
   dd.update();
   inspector.update();
   scene.update();

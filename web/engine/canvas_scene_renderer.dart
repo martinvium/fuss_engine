@@ -38,12 +38,12 @@ class CanvasSceneRenderer {
   }
 
   renderGameObject(go) {
-    for(var component in go.components) {
+    for(var component in go.components.values) {
        this.renderComponent(component, go);
     }
   }
 
-  renderComponent(component, go) {
-    component.render(ctx, go.components["Transform"]);
+  renderComponent(renderer, go) {
+    renderer.render(ctx, go.components["Transform"]);
   }
 }

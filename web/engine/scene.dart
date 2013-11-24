@@ -33,7 +33,7 @@ class Scene {
     return this.gameObjects.firstWhere((go) => go.id == id);
   }
   
-  void update() {
+  update() {
     // TODO implement
   }
 }

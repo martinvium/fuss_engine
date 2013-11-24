@@ -5,7 +5,7 @@ import "dart:html";
 class SpriteRenderer implements Component {
   var name = "SpriteRenderer";
   var path;
-  var img;
+  ImageElement img;
   
   SpriteRenderer(path) {
     this.path = path;
@@ -13,8 +13,8 @@ class SpriteRenderer implements Component {
     this.img.src = this.path;
   }  
 
-  render(ctx, transform) {
-    ctx.drawImage(img, transform.x, transform.y, transform.width, transform.height);
+  render(CanvasRenderingContext2D ctx, transform) {
+    ctx.drawImage(img, transform.x, transform.y);
   }
   
   update() {}
