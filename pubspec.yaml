@@ -1,5 +1,5 @@
 name: FussEngine
 description: A sample web application
 dependencies:
-  bot: any
+  box2d: any
   browser: any
