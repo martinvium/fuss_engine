@@ -1,0 +1,22 @@
+Selection
+- Click object in scene view to select
+
+Inspector
+- Let it render it self in the editor (renderInspector)
+- Change values of components
+  - Small tooltip with an input field?
+
+Transform
+- Convert width/height to "scale"?
+- Add rotation?
+- Add z depth? Maybe a layer concept?
+
+Other
+- Controller?
+- Physics? Maybe there's a simple js library
+- Box collider
+- Save / load scene (serialize everything and store in SimpleDB?)
+- Scene persistence? (see above)
+- Multiple scenes
+- Zoom
+- Camera?

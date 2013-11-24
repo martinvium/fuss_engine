@@ -1,16 +1,11 @@
 part of fussengine.component;
 
-class inspect {
-  const inspect();
-}
-
 class Transform implements Component {
   var name = "Transform";
-  
-  @inspect() var x;
-  @inspect() var y;
-  @inspect() var width;
-  @inspect() var height;
+  var x;
+  var y;
+  var width;
+  var height;
   
   Transform(x, y, width, height) {
     this.x = x;

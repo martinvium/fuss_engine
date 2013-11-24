@@ -9,7 +9,7 @@ var actions;
 var hierarchy;
 var inspector;
 var renderer;
-var dd;
+var sceneView;
 
 void main() {
   scene = new Scene("My scene");
@@ -25,7 +25,7 @@ void main() {
 
   renderer = new CanvasSceneRenderer(querySelector('#sceneView'), scene);
 
-  dd = new DragGameObjectSystem(querySelector('#sceneView'), scene);
+  sceneView = new SceneView(querySelector('#sceneView'), scene);
 
   querySelector('#scene-title').text = scene.name;
 
@@ -35,7 +35,7 @@ void main() {
 
 void mainLoop(timer) {
 //  print('loop');
-  dd.update();
+  sceneView.update();
   //inspector.update();
   scene.update();
   renderer.renderScene(scene);

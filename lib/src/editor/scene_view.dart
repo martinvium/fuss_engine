@@ -1,18 +1,23 @@
 part of fussengine.editor;
 
-class DragGameObjectSystem {
+class SceneView {
   var startX = 0, startY = 0;
   var drag = false;
   var mouseX = 0, mouseY = 0;
   var mousePressed = false;
-  var scene;
+  Scene scene;
     
-  DragGameObjectSystem(canvas, scene) {
+  SceneView(canvas, scene) {
     this.scene = scene;
     
     canvas.onMouseMove.listen(this.onMouseMove);
     canvas.onMouseDown.listen(this.onMouseDown);
     canvas.onMouseUp.listen(this.onMouseUp);
+    canvas.onClick.listen(this.onClick);
+  }
+  
+  onClick(e) {
+    print("Click select not yet supported");
   }
   
   onMouseMove(e) {
