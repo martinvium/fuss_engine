@@ -11,10 +11,9 @@ class InspectorView {
   }
 
   update() {
-    if(scene.selected != null) {
-      view.empty();
-      this.renderInspector(scene.selected);
-    }
+    if(scene.selected == null) return;
+    view.nodes.clear();
+    this.renderInspector(scene.selected);
   }
   
   register() {
@@ -27,7 +26,7 @@ class InspectorView {
   }
 
   renderInspector(go) {
-    for(var component in go.components) {
+    for(var component in go.components.values) {
       this.renderComponent(component);
     }
   }

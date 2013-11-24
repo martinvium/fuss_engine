@@ -1,11 +1,11 @@
 library fussengine.engine;
 import "game_object.dart";
-import 'dart:async';
+import "dart:async";
 
 var gameObjectCount = 0;
 
 class Scene {
-  List<GameObject> gameObjects = [];
+  var gameObjects = new List<GameObject>();
   var selected = null;
   var name = "";
   
@@ -29,8 +29,8 @@ class Scene {
     this._onSelectGameObjectController.add(go);
   }
 
-  GameObject findById(int id) {
-    return this.gameObjects.firstWhere((go) => go.id == id);
+  GameObject findById(id) {
+    return this.gameObjects.firstWhere((go) => go.id == int.parse(id));
   }
   
   update() {

@@ -2,7 +2,7 @@ library fussengine.editor;
 import "dart:html";
 
 class GameObjectList {
-  var view;
+  Element view;
   var scene;
   
   GameObjectList(view, scene) {
@@ -11,31 +11,37 @@ class GameObjectList {
   }
 
   register() {
-    scene.onAddGameObject.listen(this.update);
+    scene.onAddGameObject.listen(this.onAddGameObject);
   }
 
-  update(e) {
+  onAddGameObject(e) {
+    print('Added game object');
     view.children.clear();
     this.fillList();
   }
 
   fillList() {
     for(var go in scene.gameObjects) {
-      var elem = new LinkElement()
+      var a = new AnchorElement()
         ..href = "#"
         ..dataset['id'] = go.id.toString()
         ..text = go.name
         ..onClick.listen(this.onClick);
-      var wrapper = new LIElement().append(elem);
-      view.append(wrapper);
+      
+      var li = new LIElement()
+        ..append(a);
+      view.append(li);
     }
   }
 
   onClick(e) {
     var id = e.target.dataset['id'];
-    view.find('li.active').removeClass('active');
+    for(var element in view.querySelectorAll('li.active')) {
+      element.classes.remove('active');
+    }
+    
     scene.selectGameObject(id);
-    e.target.parent().addClass('active');
+    e.target.parent.classes.add('active');
     e.preventDefault();
   }
 }
