@@ -5,9 +5,9 @@ import 'engine/scene.dart';
 import 'engine/canvas_scene_renderer.dart';
 
 import 'editor/drag_game_object_system.dart';
-import 'editor/editor_actions.dart';
-import 'editor/game_object_list.dart';
-import 'editor/inspector_view.dart';
+import 'editor/menu.dart';
+import 'editor/hierarchy.dart';
+import 'editor/inspector.dart';
 
 var scene;
 var actions;
@@ -19,13 +19,13 @@ var dd;
 void main() {
   scene = new Scene("My scene");
   
-  actions = new EditorActions(scene);
+  actions = new Menu(scene);
   actions.register();
   
-  hierarchy = new GameObjectList(querySelector('#hierarchy'), scene);
+  hierarchy = new Hierarchy(querySelector('#hierarchy'), scene);
   hierarchy.register();
   
-  inspector = new InspectorView(querySelector('#inspector'), scene);
+  inspector = new Inspector(querySelector('#inspector'), scene);
   inspector.register();
 
   renderer = new CanvasSceneRenderer(querySelector('#sceneView'), scene);

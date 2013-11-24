@@ -3,11 +3,11 @@ import "dart:html";
 import "dart:mirrors";
 import "../components/component.dart";
 
-class InspectorView {
+class Inspector {
   var view;
   var scene;
   
-  InspectorView(view, scene) {
+  Inspector(view, scene) {
     this.view = view;
     this.scene = scene;
   }

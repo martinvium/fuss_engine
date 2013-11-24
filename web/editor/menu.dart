@@ -5,12 +5,12 @@ import "../components/transform.dart";
 import "../components/shape_renderer.dart";
 import "../components/sprite_renderer.dart";
 
-class EditorActions {
+class Menu {
   var scene;
   static var _squareCount = 0;
   static var _imageCount = 0;
   
-  EditorActions(scene) {
+  Menu(scene) {
     this.scene = scene;
   }
   

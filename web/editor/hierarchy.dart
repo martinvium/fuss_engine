@@ -1,11 +1,11 @@
 library fussengine.editor;
 import "dart:html";
 
-class GameObjectList {
+class Hierarchy {
   Element view;
   var scene;
   
-  GameObjectList(view, scene) {
+  Hierarchy(view, scene) {
     this.view = view;
     this.scene = scene;
   }
