@@ -1,5 +1,7 @@
 library fussengine.editor;
 import "dart:html";
+import "dart:mirrors";
+import "../components/component.dart";
 
 class InspectorView {
   var view;
@@ -21,7 +23,7 @@ class InspectorView {
   }
   
   onSelectedGameObject(e) {
-    view.empty();
+    view.nodes.clear();
     renderInspector(scene.selected);
   }
 
@@ -32,13 +34,15 @@ class InspectorView {
   }
 
   // TODO implement using metadata api?
-  renderComponent(component) {
+  renderComponent(Component component) {
     this.renderTitle(component);
-//    for(var z in component) {
-//      if(component.hasOwnProperty(z) && z != "name" && typeof component[z] != "function") {
-//        this.renderProperty(z, component[z]);
-//      }
-//    }
+    
+    InstanceMirror instance = reflect(component);
+    for(var declaration in instance.type.declarations.values) {
+      if(declaration is VariableMirror) {
+        this.renderVariable(MirrorSystem.getName(declaration.simpleName), instance.getField(declaration.simpleName).reflectee);
+      }
+    }
   }
 
   renderTitle(component) {
@@ -49,15 +53,17 @@ class InspectorView {
     view.append(li);
   }
 
-  renderProperty(name, value) {
+  renderVariable(name, value) {
+    if(name == "name") return;
+    
     var badge = new SpanElement()
       ..classes.add('badge')
-      ..text = value;
+      ..text = value.toString();
     
     var li = new LIElement()
       ..classes.add('list-group-item')
-      ..append(badge)
-      ..text = name;
+      ..text = name.toString()
+      ..append(badge);
     view.append(li);
   }
 }

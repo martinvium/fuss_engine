@@ -41,7 +41,7 @@ void main() {
 void mainLoop(timer) {
 //  print('loop');
   dd.update();
-  inspector.update();
+  //inspector.update();
   scene.update();
   renderer.renderScene(scene);
 }

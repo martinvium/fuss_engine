@@ -2,12 +2,17 @@ library fussengine.components;
 import "component.dart";
 import "dart:math";
 
+class inspect {
+  const inspect();
+}
+
 class Transform implements Component {
   var name = "Transform";
-  var x;
-  var y;
-  var width;
-  var height;
+  
+  @inspect() var x;
+  @inspect() var y;
+  @inspect() var width;
+  @inspect() var height;
   
   Transform(x, y, width, height) {
     this.x = x;
