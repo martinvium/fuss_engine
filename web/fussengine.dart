@@ -1,13 +1,8 @@
 import 'dart:html';
 import 'dart:async';
 
-import 'engine/scene.dart';
-import 'engine/canvas_scene_renderer.dart';
-
-import 'editor/drag_game_object_system.dart';
-import 'editor/menu.dart';
-import 'editor/hierarchy.dart';
-import 'editor/inspector.dart';
+import 'package:fussengine/engine.dart';
+import 'package:fussengine/editor.dart';
 
 var scene;
 var actions;

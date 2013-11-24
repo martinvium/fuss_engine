@@ -1,5 +1,4 @@
-library fussengine.editor;
-import "../components/transform.dart";
+part of fussengine.editor;
 
 class DragGameObjectSystem {
   var startX = 0, startY = 0;

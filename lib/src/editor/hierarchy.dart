@@ -1,5 +1,4 @@
-library fussengine.editor;
-import "dart:html";
+part of fussengine.editor;
 
 class Hierarchy {
   Element view;

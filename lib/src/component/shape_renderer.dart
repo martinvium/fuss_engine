@@ -1,5 +1,4 @@
-library fussengine.components;
-import "component.dart";
+part of fussengine.component;
 
 class ShapeRenderer implements Component {
   var name = "ShapeRenderer";
@@ -13,4 +12,6 @@ class ShapeRenderer implements Component {
     ctx.fillStyle = color;
     ctx.fillRect(transform.x, transform.y, transform.width, transform.height);
   }
+  
+  update() {}
 }

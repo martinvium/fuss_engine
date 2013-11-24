@@ -1,5 +1,4 @@
-library fussengine.engine;
-import "../components/transform.dart";
+part of fussengine.engine;
 
 class CanvasSceneRenderer {
   var canvas;

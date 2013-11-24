@@ -1,7 +1,4 @@
-library fussengine.editor;
-import "dart:html";
-import "dart:mirrors";
-import "../components/component.dart";
+part of fussengine.editor;
 
 class Inspector {
   var view;

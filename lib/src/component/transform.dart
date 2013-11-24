@@ -1,6 +1,4 @@
-library fussengine.components;
-import "component.dart";
-import "dart:math";
+part of fussengine.component;
 
 class inspect {
   const inspect();

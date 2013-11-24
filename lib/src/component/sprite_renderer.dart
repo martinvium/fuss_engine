@@ -1,6 +1,4 @@
-library fussengine.components;
-import "component.dart";
-import "dart:html";
+part of fussengine.component;
 
 class SpriteRenderer implements Component {
   var name = "SpriteRenderer";

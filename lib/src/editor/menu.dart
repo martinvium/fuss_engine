@@ -1,9 +1,4 @@
-library fussengine.editor;
-import "dart:html";
-import "../engine/game_object.dart";
-import "../components/transform.dart";
-import "../components/shape_renderer.dart";
-import "../components/sprite_renderer.dart";
+part of fussengine.editor;
 
 class Menu {
   var scene;

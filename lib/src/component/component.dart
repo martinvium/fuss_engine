@@ -1,4 +1,4 @@
-library fussengine.components;
+part of fussengine.component;
 
 class Component {
   var name;

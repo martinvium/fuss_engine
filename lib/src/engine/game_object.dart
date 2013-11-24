@@ -1,6 +1,4 @@
-library fussengine.engine;
-import "../components/component.dart";
-import "dart:collection";
+part of fussengine.engine;
 
 class GameObject {
   int id;

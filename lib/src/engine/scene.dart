@@ -1,8 +1,4 @@
-library fussengine.engine;
-import "game_object.dart";
-import "dart:async";
-
-var gameObjectCount = 0;
+part of fussengine.engine;
 
 class Scene {
   var gameObjects = new List<GameObject>();
