@@ -2,7 +2,7 @@ part of fussengine.engine;
 
 class Scene {
   var gameObjects = new List<GameObject>();
-  var selected = null;
+  GameObject selected;
   var name = "";
   
   StreamController _onAddGameObjectController = new StreamController.broadcast();
@@ -10,22 +10,20 @@ class Scene {
   StreamController _onSelectGameObjectController = new StreamController.broadcast();
   Stream get onSelectGameObject => _onSelectGameObjectController.stream;
   
-  Scene(name) {
-    this.name = name;
-  }
+  Scene(String this.name);
 
-  void addGameObject(go) {
+  addGameObject(GameObject go) {
     this.gameObjects.add(go);
     this._onAddGameObjectController.add(go);
   }
 
-  void selectGameObject(id) {
+  selectGameObject(String id) {
     var go = this.findById(id);
     this.selected = go;
     this._onSelectGameObjectController.add(go);
   }
 
-  GameObject findById(id) {
+  GameObject findById(String id) {
     return this.gameObjects.firstWhere((go) => go.id == int.parse(id));
   }
   

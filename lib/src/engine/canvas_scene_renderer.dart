@@ -5,13 +5,11 @@ class CanvasSceneRenderer {
   var ctx;
   var scene;
   
-  CanvasSceneRenderer(canvas, scene) {
-    this.canvas = canvas;
+  CanvasSceneRenderer(this.canvas, Scene this.scene) {
     this.ctx = this.canvas.getContext('2d');
-    this.scene;
   }
 
-  renderScene(scene) {
+  renderScene(Scene scene) {
     this.emptyCanvas();
 
     for(var go in scene.gameObjects) {
@@ -25,8 +23,8 @@ class CanvasSceneRenderer {
     this.ctx.clearRect(0, 0, canvas.width, canvas.height);
   }
 
-  // to extract this to somewhere else? a gui layer probably...
-  highlight(go) {
+  // TODO extract this to somewhere else? a gui layer probably...
+  highlight(GameObject go) {
     if(go == null) return;
     
     Transform transform = go.components["Transform"];

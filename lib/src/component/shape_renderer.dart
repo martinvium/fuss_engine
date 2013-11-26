@@ -2,16 +2,16 @@ part of fussengine.component;
 
 class ShapeRenderer implements Component {
   var name = "ShapeRenderer";
-  var color;
+  String color;
   
-  ShapeRenderer(color) {
-    this.color = color;
-  }
+  ShapeRenderer(String this.color);
 
   render(ctx, transform) {
     ctx.fillStyle = color;
     ctx.fillRect(transform.x, transform.y, transform.width, transform.height);
   }
   
-  update() {}
+  update() {
+    
+  }
 }

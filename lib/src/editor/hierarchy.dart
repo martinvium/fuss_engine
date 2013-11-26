@@ -1,13 +1,10 @@
 part of fussengine.editor;
 
 class Hierarchy {
-  Element view;
+  var view;
   var scene;
   
-  Hierarchy(view, scene) {
-    this.view = view;
-    this.scene = scene;
-  }
+  Hierarchy(Element this.view, Scene this.scene);
 
   register() {
     scene.onAddGameObject.listen(this.onAddGameObject);

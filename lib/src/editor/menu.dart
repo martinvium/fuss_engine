@@ -5,9 +5,7 @@ class Menu {
   static var _squareCount = 0;
   static var _imageCount = 0;
   
-  Menu(scene) {
-    this.scene = scene;
-  }
+  Menu(Scene this.scene);
   
   register() {
     querySelector('#create-square').onClick.listen(this.actionCreateSquare);

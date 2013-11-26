@@ -5,8 +5,7 @@ class SpriteRenderer implements Component {
   var path;
   ImageElement img;
   
-  SpriteRenderer(path) {
-    this.path = path;
+  SpriteRenderer(String this.path) {
     this.img = new ImageElement();
     this.img.src = this.path;
   }  
@@ -15,5 +14,7 @@ class SpriteRenderer implements Component {
     ctx.drawImage(img, transform.x, transform.y);
   }
   
-  update() {}
+  update() {
+    
+  }
 }

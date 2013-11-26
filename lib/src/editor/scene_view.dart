@@ -5,11 +5,9 @@ class SceneView {
   var drag = false;
   var mouseX = 0, mouseY = 0;
   var mousePressed = false;
-  Scene scene;
+  var scene;
     
-  SceneView(canvas, scene) {
-    this.scene = scene;
-    
+  SceneView(Element canvas, Scene this.scene) {
     canvas.onMouseMove.listen(this.onMouseMove);
     canvas.onMouseDown.listen(this.onMouseDown);
     canvas.onMouseUp.listen(this.onMouseUp);
@@ -55,8 +53,8 @@ class SceneView {
     }
 
     if (drag){
-        scene.selected.components["Transform"].x = mouseX - startX;
-        scene.selected.components["Transform"].y = mouseY - startY;
+      transform.x = mouseX - startX;
+      transform.y = mouseY - startY;
     }
   }
 }
