@@ -104,7 +104,7 @@ class Inspector {
     
     _setField(componentElement.value, fieldElement.value, input.value);
     
-    form.remove();
+    update();
     e.preventDefault();
   }
   
