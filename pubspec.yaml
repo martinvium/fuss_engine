@@ -4,3 +4,4 @@ dependencies:
   box2d: any
   browser: any
   polymer: any
+  serialization: any

@@ -12,10 +12,11 @@ var renderer;
 var sceneView;
 
 void main() {
-  scene = new Scene("My scene");
+  scene = new Scene.create("My scene");
+  var storage = new SceneStorage();
   
-  actions = new Menu(scene);
-  actions.register();
+  actions = new Menu(scene, storage);
+  actions.init();
   
   hierarchy = new Hierarchy(querySelector('#hierarchy'), scene);
   hierarchy.register();
@@ -26,7 +27,7 @@ void main() {
   renderer = new CanvasSceneRenderer(querySelector('#sceneView'), scene);
 
   sceneView = new SceneView(querySelector('#sceneView'), scene);
-
+  
   querySelector('#scene-title').text = scene.name;
 
   // main loop
@@ -34,7 +35,6 @@ void main() {
 }
 
 void mainLoop(timer) {
-//  print('loop');
   sceneView.update();
   //inspector.update();
   scene.update();

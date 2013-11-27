@@ -11,6 +11,15 @@ Transform
 - Add rotation?
 - Add z depth? Maybe a layer concept?
 
+Project and Storage
+X Save serialized scene to indexedDb table
+- Load serialized scene into memory from indexedDb table
+- Load empty scene by default
+- Open scene stored in IndexedDb by... name? id?
+- New scene option
+- Project type has many Scenes
+- Global reload event that can trigger redraw etc when we load a scene and for initialization?
+
 Other
 - Controller?
 - Physics? Maybe there's a simple js library

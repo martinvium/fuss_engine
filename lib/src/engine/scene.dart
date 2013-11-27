@@ -10,7 +10,8 @@ class Scene {
   StreamController _onSelectGameObjectController = new StreamController.broadcast();
   Stream get onSelectGameObject => _onSelectGameObjectController.stream;
   
-  Scene(String this.name);
+  Scene();
+  Scene.create(String this.name);
 
   addGameObject(GameObject go) {
     this.gameObjects.add(go);
@@ -29,5 +30,19 @@ class Scene {
   
   update() {
     // TODO implement
+  }
+  
+  serialize() {
+    return _serializer.write(this);
+  }
+  
+  static Scene unserialize(data) {
+    return _serializer.read(data);
+  }
+  
+  static get _serializer {
+    var serializer = new Serialization()
+      ..addRuleFor(new Scene(), constructorFields: ["name"]);
+    return serializer;
   }
 }
