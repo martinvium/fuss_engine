@@ -7,7 +7,7 @@ class Transform implements Component {
   int width;
   int height;
   
-  Transform(int this.x, int this.y, int this.width, int this.height);
+  Transform.create(int this.x, int this.y, int this.width, int this.height);
   
   render(ctx, transform) {
     

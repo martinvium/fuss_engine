@@ -49,19 +49,19 @@ class Menu {
   }
 
   actionCreateSquare(e) {
-    var go = new GameObject()
+    var go = new GameObject.create()
       ..name = "Square ${_squareCount++}"
-      ..add(new Transform(100, 50, 100, 100))
-      ..add(new ShapeRenderer("rgb(200,0,0)"));
+      ..add(new Transform.create(100, 50, 100, 100))
+      ..add(new ShapeRenderer.create("rgb(200,0,0)"));
     scene.addGameObject(go);
     e.preventDefault();
   }
 
   actionCreateImage(e) {
-    var go = new GameObject()
+    var go = new GameObject.create()
       ..name = "Image ${_imageCount}"
-      ..add(new Transform(150, 10, 75, 75))
-      ..add(new SpriteRenderer("assets/images/face.png"));
+      ..add(new Transform.create(150, 10, 75, 75))
+      ..add(new SpriteRenderer.create("assets/images/face.png"));
     scene.addGameObject(go);
     e.preventDefault();
   }

@@ -42,7 +42,7 @@ class Scene {
   
   static get _serializer {
     var serializer = new Serialization()
-      ..addRuleFor(new Scene(), constructorFields: ["name"]);
+      ..addRuleFor(new Scene());
     return serializer;
   }
 }
