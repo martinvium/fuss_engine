@@ -12,3 +12,4 @@ part 'src/editor/hierarchy.dart';
 part 'src/editor/inspector.dart';
 part 'src/editor/menu.dart';
 part 'src/editor/scene_storage.dart';
+part 'src/editor/editor.dart';

@@ -2,26 +2,27 @@ part of fussengine.editor;
 
 class Inspector {
   var view;
-  var scene;
+  var editor;
   
-  Inspector(Element this.view, Scene this.scene);
+  Inspector(Element this.view, Editor this.editor);
 
   update() {
-    if(scene.selected == null) return;
+    if(editor.selected == null) return;
     view.nodes.clear();
-    this.renderInspector(scene.selected);
+    this.renderInspector();
   }
   
   register() {
-    scene.onSelectGameObject.listen(onSelectGameObject);
+    editor.onSelectGameObject.listen(onSelectGameObject);
   }
   
   onSelectGameObject(e) {
     view.nodes.clear();
-    renderInspector(scene.selected);
+    renderInspector();
   }
 
-  renderInspector(GameObject go) {
+  renderInspector() {
+    var go = editor.selected;
     for(var component in go.components.values) {
       renderComponent(component);
     }
@@ -72,7 +73,7 @@ class Inspector {
   
   InstanceMirror _fieldByName(String componentName, String fieldName) {
     var fieldSym = new Symbol(fieldName);
-    Component component = scene.selected.components[componentName];
+    Component component = editor.selected.components[componentName];
     var field = reflect(component).getField(fieldSym);
     return field;
   }
@@ -110,7 +111,7 @@ class Inspector {
   
   _setField(String componentName, String fieldName, String value) {
     var fieldSym = new Symbol(fieldName);
-    Component component = scene.selected.components[componentName];
+    Component component = editor.selected.components[componentName];
     var mirror = reflect(component);
     var field = mirror.getField(fieldSym);
     

@@ -2,12 +2,12 @@ part of fussengine.editor;
 
 class Hierarchy {
   var view;
-  var scene;
+  var editor;
   
-  Hierarchy(Element this.view, Scene this.scene);
+  Hierarchy(Element this.view, Editor this.editor);
 
   register() {
-    scene.onAddGameObject.listen(this.onAddGameObject);
+    editor.onAddGameObject.listen(this.onAddGameObject);
   }
 
   onAddGameObject(e) {
@@ -17,7 +17,7 @@ class Hierarchy {
   }
 
   fillList() {
-    for(var go in scene.gameObjects) {
+    for(var go in editor.gameObjects) {
       var a = new AnchorElement()
         ..href = "#"
         ..dataset['id'] = go.id.toString()
@@ -36,7 +36,7 @@ class Hierarchy {
       element.classes.remove('active');
     }
     
-    scene.selectGameObject(id);
+    editor.selectGameObject(id);
     e.target.parent.classes.add('active');
     e.preventDefault();
   }

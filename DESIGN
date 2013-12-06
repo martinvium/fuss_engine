@@ -1,0 +1,26 @@
+EDITOR
+
+
+Project (meta data about the application and it's scenes, build options or whatever)
+
+ENGINE
+
+Initialization
+- create application
+- initialize subsystems?
+- find latest scene
+- create scene
+- trigger scene load and subsystems respond?
+
+Application (connecting the renderer with the current scene)
+- renderer
+- sceneManager
+- displayManager
+
+SceneManager
+- currentScene
+- loadScene()
+- changeScene()
+
+Scene (game objects)
+- addGameObject
