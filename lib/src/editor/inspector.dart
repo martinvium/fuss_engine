@@ -6,22 +6,18 @@ class Inspector {
   
   Inspector(Element this.view, Editor this.editor);
 
-  update() {
-    if(editor.selected == null) return;
-    view.nodes.clear();
-    this.renderInspector();
-  }
-  
   register() {
-    editor.onSelectGameObject.listen(onSelectGameObject);
+    editor.onSelectGameObject.listen((e) => renderInspector());
+    editor.onLoadScene.listen((e) => renderInspector());
   }
   
-  onSelectGameObject(e) {
-    view.nodes.clear();
-    renderInspector();
-  }
-
   renderInspector() {
+    view.nodes.clear();
+    
+    if(editor.selected == null) {
+      return;
+    }
+    
     var go = editor.selected;
     for(var component in go.components.values) {
       renderComponent(component);
@@ -105,7 +101,7 @@ class Inspector {
     
     _setField(componentElement.value, fieldElement.value, input.value);
     
-    update();
+    renderInspector();
     e.preventDefault();
   }
   

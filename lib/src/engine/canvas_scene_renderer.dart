@@ -3,12 +3,11 @@ part of fussengine.engine;
 class CanvasSceneRenderer {
   var canvas;
   var ctx;
-  var scene;
   
-  CanvasSceneRenderer(this.canvas, Scene this.scene) {
+  CanvasSceneRenderer(this.canvas) {
     this.ctx = this.canvas.getContext('2d');
   }
-
+  
   renderScene(Scene scene) {
     this.emptyCanvas();
 

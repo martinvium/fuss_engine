@@ -7,16 +7,13 @@ class Hierarchy {
   Hierarchy(Element this.view, Editor this.editor);
 
   register() {
-    editor.onAddGameObject.listen(this.onAddGameObject);
+    editor.onAddGameObject.listen(fillList);
+    editor.onLoadScene.listen(fillList);
   }
-
-  onAddGameObject(e) {
-    print('Added game object');
+  
+  fillList(e) {
+    print("filling hierarchy list");
     view.children.clear();
-    this.fillList();
-  }
-
-  fillList() {
     for(var go in editor.gameObjects) {
       var a = new AnchorElement()
         ..href = "#"
@@ -26,6 +23,11 @@ class Hierarchy {
       
       var li = new LIElement()
         ..append(a);
+      
+      if(editor.selected == go) {
+        li.classes.add('active');
+      }
+      
       view.append(li);
     }
   }

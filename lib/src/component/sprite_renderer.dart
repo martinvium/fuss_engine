@@ -5,6 +5,7 @@ class SpriteRenderer implements Component {
   var path;
   ImageElement img;
   
+  SpriteRenderer();
   SpriteRenderer.create(String this.path) {
     this.img = new ImageElement();
     this.img.src = this.path;

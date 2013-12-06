@@ -5,13 +5,20 @@ class SceneView {
   var drag = false;
   var mouseX = 0, mouseY = 0;
   var mousePressed = false;
-  var scene;
+  Editor editor;
     
-  SceneView(Element canvas, Scene this.scene) {
-    canvas.onMouseMove.listen(this.onMouseMove);
-    canvas.onMouseDown.listen(this.onMouseDown);
-    canvas.onMouseUp.listen(this.onMouseUp);
-    canvas.onClick.listen(this.onClick);
+  SceneView(Editor this.editor);
+  
+  register(Element canvas) {
+    canvas.onMouseMove.listen(onMouseMove);
+    canvas.onMouseDown.listen(onMouseDown);
+    canvas.onMouseUp.listen(onMouseUp);
+    canvas.onClick.listen(onClick);
+    editor.onLoadScene.listen(onLoadScene);
+  }
+  
+  onLoadScene(e) {
+    querySelector('#scene-title').text = editor.scene.name;
   }
   
   onClick(e) {
@@ -32,9 +39,9 @@ class SceneView {
   }
 
   update() {
-    if(scene.selected == null) return;
+    if(editor.selected == null) return;
 
-    Transform transform = scene.selected.components["Transform"];
+    Transform transform = editor.selected.components["Transform"];
 
     if (mousePressed){
         var left = transform.x;

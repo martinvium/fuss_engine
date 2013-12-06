@@ -4,6 +4,7 @@ class ShapeRenderer implements Component {
   var name = "ShapeRenderer";
   String color;
   
+  ShapeRenderer();
   ShapeRenderer.create(String this.color);
 
   render(ctx, transform) {

@@ -6,6 +6,8 @@ class GameObject {
   Map<String,Component> components = new HashMap<String,Component>();
   static int _gameObjectCount = 0;
   
+  GameObject();
+  
   GameObject.create() {
     _gameObjectCount++;
     this.id = _gameObjectCount;

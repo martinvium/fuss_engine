@@ -1,6 +1,7 @@
 part of fussengine.editor;
 
 class Menu {
+  static const String DEFAULT_SCENE_NAME = 'Untitled scene';
   static var _squareCount = 0;
   static var _imageCount = 0;
   
@@ -36,15 +37,14 @@ class Menu {
   }
   
   _onClickLoadScene(e) {
-    print('please load');
     editor.loadScene((e.target as AnchorElement).text).then((scene) {
-      print('loaded ${scene.name}');
+      editor.scene = scene;
     });
     e.preventDefault();
   }
   
   actionNewScene(e) {
-    
+    editor.scene = new Scene.create(DEFAULT_SCENE_NAME);
     e.preventDefault();
   }
   
