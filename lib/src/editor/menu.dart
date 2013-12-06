@@ -4,16 +4,16 @@ class Menu {
   static var _squareCount = 0;
   static var _imageCount = 0;
   
-  var scene;
-  SceneStorage storage;
+  Editor editor;
   
-  Menu(Scene this.scene, SceneStorage this.storage);
+  Menu(Editor this.editor);
   
   init() {
+    querySelector('#new-scene').onClick.listen(this.actionNewScene);
     querySelector('#save-scene').onClick.listen(this.actionSaveScene);
     
     var list = querySelector('#menu-file-load-list');
-    storage.querySceneNames().then((cursors) {
+    editor.querySceneNames().then((cursors) {
       cursors.listen((cursor) {
         _createLoadSceneMenuItem(list, cursor);
       });
@@ -37,14 +37,19 @@ class Menu {
   
   _onClickLoadScene(e) {
     print('please load');
-    storage.loadScene((e.target as AnchorElement).text).then((scene) {
+    editor.loadScene((e.target as AnchorElement).text).then((scene) {
       print('loaded ${scene.name}');
     });
     e.preventDefault();
   }
   
+  actionNewScene(e) {
+    
+    e.preventDefault();
+  }
+  
   actionSaveScene(e) {
-    storage.saveScene(scene);
+    editor.saveScene();
     e.preventDefault();
   }
 
@@ -53,7 +58,7 @@ class Menu {
       ..name = "Square ${_squareCount++}"
       ..add(new Transform.create(100, 50, 100, 100))
       ..add(new ShapeRenderer.create("rgb(200,0,0)"));
-    scene.addGameObject(go);
+    editor.addGameObject(go);
     e.preventDefault();
   }
 
@@ -62,7 +67,7 @@ class Menu {
       ..name = "Image ${_imageCount}"
       ..add(new Transform.create(150, 10, 75, 75))
       ..add(new SpriteRenderer.create("assets/images/face.png"));
-    scene.addGameObject(go);
+    editor.addGameObject(go);
     e.preventDefault();
   }
 }

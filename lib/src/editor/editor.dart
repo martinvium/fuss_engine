@@ -7,8 +7,9 @@ class Editor {
   var inspector;
   var renderer;
   var sceneView;
+  var storage;
   
-  // proxy stuff to scene
+  // proxy stuff
   GameObject get selected => scene.selected;
   Stream get onSelectGameObject => scene.onSelectGameObject;
   Stream get onAddGameObject => scene.onAddGameObject;
@@ -16,16 +17,23 @@ class Editor {
   StreamController _onLoadSceneController = new StreamController.broadcast();
   Stream get onLoadScene => _onLoadSceneController.stream;
   selectGameObject(id) => scene.selectGameObject(id);
+  addGameObject(GameObject go) => scene.addGameObject(go);
+  Future querySceneNames() => storage.querySceneNames();
+  loadScene(String sceneName) => storage.loadScene(sceneName);
   
   Editor.initialized() {
     initialize();
   }
   
+  saveScene() {
+    storage.saveScene(scene);
+  }
+  
   initialize() {
     scene = new Scene.create("My scene");
-    var storage = new SceneStorage();
+    storage = new SceneStorage();
     
-    actions = new Menu(scene, storage);
+    actions = new Menu(this);
     actions.init();
     
     hierarchy = new Hierarchy(querySelector('#hierarchy'), this);
