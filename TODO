@@ -2,9 +2,8 @@ Selection
 - Click object in scene view to select
 
 Inspector
-- Let it render it self in the editor (renderInspector)
-- Change values of components
-  - Small tooltip with an input field?
+- Improve UI for updating attributes
+- Update inspector values when object attributes change (drag)
 
 Transform
 - Convert width/height to "scale"?
@@ -12,20 +11,12 @@ Transform
 - Add z depth? Maybe a layer concept?
 
 Project and Storage
-X Save serialized scene to indexedDb table
-- Load serialized scene into memory from indexedDb table
 - Load empty scene by default
-- Open scene stored in IndexedDb by... name? id?
-- New scene option
-- Project type has many Scenes
-- Global reload event that can trigger redraw etc when we load a scene and for initialization?
+- Multiple projects
 
 Other
 - Controller?
 - Physics? Maybe there's a simple js library
 - Box collider
-- Save / load scene (serialize everything and store in SimpleDB?)
-- Scene persistence? (see above)
-- Multiple scenes
 - Zoom
 - Camera?
