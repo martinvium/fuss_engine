@@ -3,11 +3,11 @@ part of fussengine.editor;
 class FieldDrawer {
   InstanceMirror _component;
   VariableMirror _fieldDeclaration;
-  InstanceMirror _field;
+//  InstanceMirror _field;
+  var oldValue;
+  Element _badge;
   
-  FieldDrawer(InstanceMirror this._component, VariableMirror this._fieldDeclaration) {
-    _field = _component.getField(_fieldDeclaration.simpleName);
-  }
+  FieldDrawer(InstanceMirror this._component, VariableMirror this._fieldDeclaration);
   
   String get name {
     return MirrorSystem.getName(_fieldDeclaration.simpleName);
@@ -25,19 +25,39 @@ class FieldDrawer {
     return _field.type.reflectedType.toString();
   }
   
+  InstanceMirror get _field {
+    return _component.getField(_fieldDeclaration.simpleName);
+  }
+  
+  update() {
+    if(isHidden()) return;
+    if(value == oldValue) return;
+    _setBadgeValue();
+  }
+  
   draw(Element parent) {
     if(isHidden()) return;
     
-    var badge = new SpanElement()
+    _badge = new SpanElement()
       ..classes.add('badge pointer')
-      ..text = value
       ..onClick.listen(onClickBadge);
+    
+    var label = new LabelElement()
+      ..style.fontWeight = "normal"
+      ..text = name;
     
     var li = new LIElement()
       ..classes.add('list-group-item')
-      ..text = name.toString()
-      ..append(badge);
+      ..append(label)
+      ..append(_badge);
     parent.append(li);
+    
+    _setBadgeValue();
+  }
+  
+  _setBadgeValue() {
+    _badge.text = value;
+    oldValue = value;
   }
   
   isHidden() {
@@ -64,11 +84,8 @@ class FieldDrawer {
   
   _saveField(Event e) {
     FormElement form = e.target;
-    
     var input = form.querySelector('input[name="value"]') as TextInputElement;
-    
     _setField(input.value);
-    
     e.preventDefault();
   }
   

@@ -3,6 +3,7 @@ part of fussengine.editor;
 class Inspector {
   var view;
   var editor;
+  var _componentDrawers = new List<ComponentDrawer>();
   
   Inspector(Element this.view, Editor this.editor);
 
@@ -13,6 +14,10 @@ class Inspector {
   
   update() {
     if(editor.selected == null) return;
+    
+    for(var drawer in _componentDrawers) {
+      drawer.update();
+    }
   }
   
   renderInspector() {
@@ -23,8 +28,13 @@ class Inspector {
     }
     
     var go = editor.selected;
+    _renderComponents(go);
+  }
+  
+  _renderComponents(GameObject go) {
     for(var component in go.components.values) {
       var drawer = new ComponentDrawer(component);
+      _componentDrawers.add(drawer);
       drawer.draw(view);
     }
   }
