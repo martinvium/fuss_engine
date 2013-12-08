@@ -1,17 +1,36 @@
 part of fussengine.editor;
 
 class FieldDrawer {
-  Component _component;
+  InstanceMirror _component;
+  VariableMirror _fieldDeclaration;
+  InstanceMirror _field;
   
-  FieldDrawer(Component this._component);
+  FieldDrawer(InstanceMirror this._component, VariableMirror this._fieldDeclaration) {
+    _field = _component.getField(_fieldDeclaration.simpleName);
+  }
   
-  draw(Element parent, name, value) {
-    if(name == "name") return;
+  String get name {
+    return MirrorSystem.getName(_fieldDeclaration.simpleName);
+  }
+  
+  String get value {
+    return _field.reflectee.toString();
+  }
+  
+  Symbol get symbol {
+    return new Symbol(name);
+  }
+  
+  String get type {
+    return _field.type.reflectedType.toString();
+  }
+  
+  draw(Element parent) {
+    if(isHidden()) return;
     
     var badge = new SpanElement()
       ..classes.add('badge pointer')
-      ..text = value.toString()
-      ..dataset["field"] = name.toString()
+      ..text = value
       ..onClick.listen(onClickBadge);
     
     var li = new LIElement()
@@ -21,24 +40,23 @@ class FieldDrawer {
     parent.append(li);
   }
   
+  isHidden() {
+    return name == "name";
+  }
+  
   onClickBadge(Event e) {
     Element badge = e.target;
-    var drawer = _createDrawer(badge.dataset["field"]);
+    var drawer = _createForm();
     badge.parent.append(drawer);
   }
   
-  _createDrawer(String fieldName) {
-    var field = _fieldByName(fieldName);
-    var value = field.reflectee.toString();
-    
+  _createForm() {
     var form = new FormElement()
       ..onSubmit.listen(_saveField);
     
-    var meta = new Element.html('<div><input type="hidden" name="field" value="${fieldName}"/></div>');
     var drawer = new Element.html('<div class="form-group"><input type="text" name="value" value="${value}" class="form-control"/></div>');
     var button = new Element.html('<div class="form-group"><input type="submit" value="Save" class="btn btn-default"/></div>');
     
-    form.append(meta);
     form.append(drawer);
     form.append(button);
     return form;
@@ -47,35 +65,23 @@ class FieldDrawer {
   _saveField(Event e) {
     FormElement form = e.target;
     
-    var fieldElement = form.querySelector('input[name="field"]') as HiddenInputElement;
-    var field = _fieldByName(fieldElement.value);
     var input = form.querySelector('input[name="value"]') as TextInputElement;
     
-    _setField(fieldElement.value, input.value);
+    _setField(input.value);
     
     e.preventDefault();
   }
   
-  InstanceMirror _fieldByName(String fieldName) {
-    var fieldSym = new Symbol(fieldName);
-    var field = reflect(_component).getField(fieldSym);
-    return field;
-  }
-  
-  _setField(String fieldName, String value) {
-    var fieldSym = new Symbol(fieldName);
-    var mirror = reflect(_component);
-    var field = mirror.getField(fieldSym);
-    
-    switch(field.type.reflectedType.toString()) {
+  _setField(String value) {
+    switch(type) {
       case 'String':
-        mirror.setField(fieldSym, value.toString());
+        _component.setField(symbol, value.toString());
         break;
       case 'int':
-        mirror.setField(fieldSym, int.parse(value));
+        _component.setField(symbol, int.parse(value));
         break;
       default:
-        throw new Exception('Field type not supported: ${fieldName}, ${field.type.reflectedType}');
+        throw new Exception('Field type not supported: ${name}, ${type}');
     }
   }
 }

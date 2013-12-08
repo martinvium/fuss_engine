@@ -2,10 +2,10 @@ part of fussengine.editor;
 
 class ComponentDrawer {
   var _component;
-  var _reflected;
+  var _reflectedComponent;
   
   ComponentDrawer(Component this._component) {
-    _reflected = reflect(_component);
+    _reflectedComponent = reflect(_component);
   }
   
   draw(Element parent) {
@@ -16,12 +16,10 @@ class ComponentDrawer {
   renderComponent(Element parent) {
     _renderTitle(parent);
     
-    for(var declaration in _reflected.type.declarations.values) {
+    for(var declaration in _reflectedComponent.type.declarations.values) {
       if(declaration is VariableMirror) {
-        var drawer = new FieldDrawer(_component);
-        var fieldName = MirrorSystem.getName(declaration.simpleName);
-        var fieldValue = _reflected.getField(declaration.simpleName).reflectee;
-        drawer.draw(parent, fieldName, fieldValue);
+        var drawer = new FieldDrawer(_reflectedComponent, declaration);
+        drawer.draw(parent);
       }
     }
   }
