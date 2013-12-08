@@ -2,9 +2,10 @@ Selection
 - Click object in scene view to select
 
 Inspector
-- Improve UI for updating attributes
-- Update inspector values when object attributes change (drag)
-  - Periodically refresh only the values of the window
+- Improve UI for updating fields
+- Fix field form being added each time badge is clicked
+- Fix field form not closing
+- Add customizable field drawers
 
 Transform
 - Convert width/height to "scale"?
@@ -18,7 +19,7 @@ Assets
 - Drag files into assets to make them "part" of the project?
 - Allow adding url's to the asset list?
 - Wider definition of assets?
-- Scripts?
+- Scripts as gists?
 
 Other
 - Controller?
@@ -26,3 +27,4 @@ Other
 - Box collider
 - Zoom
 - Camera?
+- Update game object default names to look for existing ones and add 1

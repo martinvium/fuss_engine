@@ -3,7 +3,6 @@ part of fussengine.editor;
 class FieldDrawer {
   InstanceMirror _component;
   VariableMirror _fieldDeclaration;
-//  InstanceMirror _field;
   var oldValue;
   Element _badge;
   
@@ -25,6 +24,7 @@ class FieldDrawer {
     return _field.type.reflectedType.toString();
   }
   
+  // must re-reflect to pick up changed values
   InstanceMirror get _field {
     return _component.getField(_fieldDeclaration.simpleName);
   }
@@ -40,7 +40,7 @@ class FieldDrawer {
     
     _badge = new SpanElement()
       ..classes.add('badge pointer')
-      ..onClick.listen(onClickBadge);
+      ..onClick.listen(_onClickBadge);
     
     var label = new LabelElement()
       ..style.fontWeight = "normal"
@@ -64,7 +64,7 @@ class FieldDrawer {
     return name == "name";
   }
   
-  onClickBadge(Event e) {
+  _onClickBadge(Event e) {
     Element badge = e.target;
     var drawer = _createForm();
     badge.parent.append(drawer);
