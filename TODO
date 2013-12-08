@@ -5,7 +5,10 @@ Inspector
 - Improve UI for updating fields
 - Fix field form being added each time badge is clicked
 - Fix field form not closing
+- Fix form value not being updated when badge is
 - Add customizable field drawers
+- Add metadata triggered drawers
+
 
 Transform
 - Convert width/height to "scale"?

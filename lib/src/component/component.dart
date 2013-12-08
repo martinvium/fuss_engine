@@ -1,6 +1,6 @@
 part of fussengine.component;
 
-class Component {
+abstract class Component {
   var name;
   
   render(ctx, transform) {
