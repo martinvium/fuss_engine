@@ -91,5 +91,7 @@ class Editor {
       sceneView.update();
       renderer.renderScene(scene);
     }
+    
+    inspector.update();
   }
 }

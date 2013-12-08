@@ -4,6 +4,7 @@ Selection
 Inspector
 - Improve UI for updating attributes
 - Update inspector values when object attributes change (drag)
+  - Periodically refresh only the values of the window
 
 Transform
 - Convert width/height to "scale"?
@@ -11,8 +12,13 @@ Transform
 - Add z depth? Maybe a layer concept?
 
 Project and Storage
-- Load empty scene by default
 - Multiple projects
+
+Assets
+- Drag files into assets to make them "part" of the project?
+- Allow adding url's to the asset list?
+- Wider definition of assets?
+- Scripts?
 
 Other
 - Controller?

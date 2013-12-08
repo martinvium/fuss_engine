@@ -13,3 +13,5 @@ part 'src/editor/inspector.dart';
 part 'src/editor/menu.dart';
 part 'src/editor/scene_storage.dart';
 part 'src/editor/editor.dart';
+part 'src/editor/component_drawer.dart';
+part 'src/editor/field_drawer.dart';
